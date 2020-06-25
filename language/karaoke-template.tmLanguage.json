@@ -1,6 +1,6 @@
 {
-  "name": "karaoke-template",
-  "scopeName": "source.karaoke-template",
+  "name": "Karaoke Template",
+  "scopeName": "source.karatmpl",
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "patterns": [{ "include": "#tagblock" }, { "include": "#inline_lua" }],
   "repository": {
@@ -49,11 +49,19 @@
       "patterns": [
         {
           "name": "constant.numeric.integer.template",
-          "match": "(?<!\\.)(-?([0-9]+))(?!\\.)"
+          "match": "(?<!\\.|&H[0-9a-fA-F]*)(-?([0-9]+))(?!\\.)"
         },
         {
           "name": "constant.numeric.float.template",
           "match": "-?([0-9]+)\\.[0-9]+([eE][+-]?[0-9]+)?[fFdD]?"
+        },
+        {
+          "name": "constant.other.color.rgb-value.color.template",
+          "match": "&H[0-9a-fA-F]{6}&"
+        },
+        {
+          "name": "constant.other.color.rgb-value.alpha.template",
+          "match": "&H[0-9a-fA-F]{2}(?![0-9a-fA-F])"
         }
       ]
     }

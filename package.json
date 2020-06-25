@@ -10,6 +10,8 @@
     "Other"
   ],
   "activationEvents": [
+    "onLanguage:karatmpl",
+    "onLanguage:lua",
     "onCommand:aegikit.minifyLua"
   ],
   "main": "./out/extension.js",
@@ -22,23 +24,24 @@
     ],
     "languages": [
       {
-        "id": "karaoke-template",
+        "id": "karatmpl",
         "extensions": [
-          ".karaoke-template"
+          ".karaoke-template",
+          ".karatmpl"
         ],
         "configuration": "./language/karaoke-template.configuration.json"
       },
       {
         "id": "lua",
         "extensions": [
-          ".karaoke-code"
+          ".karacode"
         ]
       }
     ],
     "grammars": [
       {
-        "language": "karaoke-template",
-        "scopeName": "source.karaoke-template",
+        "language": "karatmpl",
+        "scopeName": "source.karatmpl",
         "path": "./language/karaoke-template.tmLanguage.json",
         "embeddedLanguages": {
           "meta.embedded.block.lua": "lua"
