@@ -19,6 +19,31 @@
         "command": "aegikit.minifyLua",
         "title": "Minify Lua code"
       }
+    ],
+    "languages": [
+      {
+        "id": "karaoke-template",
+        "extensions": [
+          ".karaoke-template"
+        ],
+        "configuration": "./language/karaoke-template.configuration.json"
+      },
+      {
+        "id": "lua",
+        "extensions": [
+          ".karaoke-code"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "karaoke-template",
+        "scopeName": "source.karaoke-template",
+        "path": "./language/karaoke-template.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.lua": "lua"
+        }
+      }
     ]
   },
   "scripts": {

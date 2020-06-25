@@ -1,0 +1,61 @@
+{
+  "name": "karaoke-template",
+  "scopeName": "source.karaoke-template",
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "patterns": [{ "include": "#tagblock" }, { "include": "#inline_lua" }],
+  "repository": {
+    "tagblock": {
+      "begin": "\\{",
+      "end": "\\}",
+      "patterns": [
+        { "include": "#tag" },
+        { "include": "#inline_lua" },
+        { "include": "#values" }
+      ]
+    },
+    "tag": {
+      "match": "(\\\\)([a-zA-Z0-9]*[a-zA-Z])",
+      "captures": {
+        "1": {
+          "name": "keyword.control.tagstart"
+        },
+        "2": {
+          "name": "entity.name.tag.tagname"
+        }
+      }
+    },
+
+    "inline_lua": {
+      "name": "markup.embed.block.lua",
+      "begin": "(!)\\s*",
+      "end": "\\s*(!)",
+      "beginCaptures": {
+        "1": { "name": "keyword.operator.inlinelua.end" }
+      },
+      "endCaptures": {
+        "1": { "name": "keyword.operator.inlinelua.end" }
+      },
+      "patterns": [
+        {
+          "include": "source.lua"
+        },
+        {
+          "match": "\\$[a-z]+",
+          "name": "variable.name.template"
+        }
+      ]
+    },
+    "values": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.template",
+          "match": "(?<!\\.)(-?([0-9]+))(?!\\.)"
+        },
+        {
+          "name": "constant.numeric.float.template",
+          "match": "-?([0-9]+)\\.[0-9]+([eE][+-]?[0-9]+)?[fFdD]?"
+        }
+      ]
+    }
+  }
+}
