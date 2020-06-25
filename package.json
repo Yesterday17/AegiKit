@@ -22,6 +22,12 @@
         "title": "Minify Lua code"
       }
     ],
+    "configurationDefaults": {
+      "[karatmpl]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false
+      }
+    },
     "languages": [
       {
         "id": "karatmpl",
