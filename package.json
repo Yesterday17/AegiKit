@@ -47,6 +47,12 @@
           "meta.embedded.block.lua": "lua"
         }
       }
+    ],
+    "snippets": [
+      {
+        "language": "karatmpl",
+        "path": "./snippets/inline-variable.karatmpl.json"
+      }
     ]
   },
   "scripts": {

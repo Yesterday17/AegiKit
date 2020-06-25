@@ -1,0 +1,269 @@
+{
+  "lstart": {
+    "prefix": ["$lstart"],
+    "body": ["\\$lstart"],
+    "description": "line.start_time"
+  },
+  "lend": {
+    "prefix": ["$lend"],
+    "body": ["\\$lend"],
+    "description": "line.end_time"
+  },
+  "ldur": {
+    "prefix": ["$ldur"],
+    "body": ["\\$ldur"],
+    "description": "line.duration"
+  },
+  "lmid": {
+    "prefix": ["$lmid"],
+    "body": ["\\$lmid"],
+    "description": "line.start_time + line.duration/2"
+  },
+  "margin_l": {
+    "prefix": ["$margin_l"],
+    "body": ["\\$margin_l"],
+    "description": "line.margin_l ?? line.styleref.margin_l"
+  },
+  "margin_r": {
+    "prefix": ["$margin_r"],
+    "body": ["\\$margin_r"],
+    "description": "line.margin_r ?? line.styleref.margin_r"
+  },
+  "margin_t": {
+    "prefix": ["$margin_t"],
+    "body": ["\\$margin_t"],
+    "description": "line.margin_t ?? line.styleref.margin_t"
+  },
+  "margin_b": {
+    "prefix": ["$margin_b"],
+    "body": ["\\$margin_b"],
+    "description": "line.margin_b ?? line.styleref.margin_b"
+  },
+  "margin_v": {
+    "prefix": ["$margin_v"],
+    "body": ["\\$margin_v"],
+    "description": "line.margin_t ?? line.styleref.margin_t"
+  },
+  "syln": {
+    "prefix": ["$syln"],
+    "body": ["\\$syln"],
+    "description": "line.kara.n"
+  },
+  "li": {
+    "prefix": ["$li"],
+    "body": ["\\$li"],
+    "description": "line.i"
+  },
+  "lleft": {
+    "prefix": ["$lleft"],
+    "body": ["\\$lleft"],
+    "description": "math.floor(line.left+0.5)"
+  },
+  "lcenter": {
+    "prefix": ["$lcenter"],
+    "body": ["\\$lcenter"],
+    "description": "math.floor(line.left + line.width/2 + 0.5)"
+  },
+  "lright": {
+    "prefix": ["$lright"],
+    "body": ["\\$lright"],
+    "description": "math.floor(line.left + line.width + 0.5)"
+  },
+  "lwidth": {
+    "prefix": ["$lwidth"],
+    "body": ["\\$lwidth"],
+    "description": "math.floor(line.width + 0.5)"
+  },
+  "ltop": {
+    "prefix": ["$ltop"],
+    "body": ["\\$ltop"],
+    "description": "math.floor(line.top + 0.5)"
+  },
+  "lmiddle": {
+    "prefix": ["$lmiddle"],
+    "body": ["\\$lmiddle"],
+    "description": "math.floor(line.middle + 0.5)"
+  },
+  "lbottom": {
+    "prefix": ["$lbottom"],
+    "body": ["\\$lbottom"],
+    "description": "math.floor(line.bottom + 0.5)"
+  },
+  "lheight": {
+    "prefix": ["$lheight"],
+    "body": ["\\$lheight"],
+    "description": "math.floor(line.height + 0.5)"
+  },
+  "lx": {
+    "prefix": ["$lx"],
+    "body": ["\\$lx"],
+    "description": "math.floor(line.x+0.5)"
+  },
+  "ly": {
+    "prefix": ["$ly"],
+    "body": ["\\$ly"],
+    "description": "math.floor(line.y+0.5)"
+  },
+
+  "sstart": {
+    "prefix": ["$sstart"],
+    "body": ["\\$sstart"],
+    "description": "syl.start_time"
+  },
+  "send": {
+    "prefix": ["$send"],
+    "body": ["\\$send"],
+    "description": "syl.end_time"
+  },
+  "sdur": {
+    "prefix": ["$sdur"],
+    "body": ["\\$sdur"],
+    "description": "syl.duration"
+  },
+  "skdur": {
+    "prefix": ["$skdur"],
+    "body": ["\\$skdur"],
+    "description": "syl.duration / 10"
+  },
+  "smid": {
+    "prefix": ["$smid"],
+    "body": ["\\$smid"],
+    "description": "syl.start_time + syl.duration / 2"
+  },
+  "si": {
+    "prefix": ["$si"],
+    "body": ["\\$si"],
+    "description": "syl.i"
+  },
+  "sleft": {
+    "prefix": ["$sleft"],
+    "body": ["\\$sleft"],
+    "description": "math.floor(line.left + syl.left+0.5)"
+  },
+  "scenter": {
+    "prefix": ["$scenter"],
+    "body": ["\\$scenter"],
+    "description": "math.floor(line.left + syl.center+0.5)"
+  },
+  "sright": {
+    "prefix": ["$sright"],
+    "body": ["\\$sright"],
+    "description": "math.floor(line.left + syl.right+0.5)"
+  },
+  "swidth": {
+    "prefix": ["$swidth"],
+    "body": ["\\$swidth"],
+    "description": "math.floor(syl.width + 0.5)"
+  },
+  "stop": {
+    "prefix": ["$stop"],
+    "body": ["\\$stop"],
+    "description": "not-furi: varctx.ltop\nfuri: math.floor(varctx.ltop - syl.height + 0.5)"
+  },
+  "smiddle": {
+    "prefix": ["$smiddle"],
+    "body": ["\\$smiddle"],
+    "description": "not-furi: varctx.lmiddle\nfuri: math.floor(varctx.ltop - syl.height/2 + 0.5)"
+  },
+  "sbottom": {
+    "prefix": ["$sbottom"],
+    "body": ["\\$sbottom"],
+    "description": "not-furi: varctx.lbottom\nfuri: varctx.ltop"
+  },
+  "sheight": {
+    "prefix": ["$sheight"],
+    "body": ["\\$sheight"],
+    "description": "syl.height"
+  },
+  "sx": {
+    "prefix": ["$sx"],
+    "body": ["\\$sx"],
+    "description": "left: math.floor(line.left + syl.left + 0.5)\ncenter: math.floor(line.left + syl.center + 0.5)\nright: math.floor(line.left + syl.right + 0.5)"
+  },
+  "sy": {
+    "prefix": ["$sy"],
+    "body": ["\\$sy"],
+    "description": "top: varctx.stop\nmiddle: varctx.smiddle\nbottom: varctx.sbottom"
+  },
+
+  "start": {
+    "prefix": ["$start"],
+    "body": ["\\$start"],
+    "description": "line: varctx.lstart\nsyl: varctx.sstart"
+  },
+  "end": {
+    "prefix": ["$end"],
+    "body": ["\\$end"],
+    "description": "line: varctx.lend\nsyl: varctx.send"
+  },
+  "mid": {
+    "prefix": ["$mid"],
+    "body": ["\\$mid"],
+    "description": "line: varctx.lmid\nsyl: varctx.smid"
+  },
+  "dur": {
+    "prefix": ["$dur"],
+    "body": ["\\$dur"],
+    "description": "line: varctx.ldur\nsyl: varctx.sdur"
+  },
+  "kdur": {
+    "prefix": ["$kdur"],
+    "body": ["\\$kdur"],
+    "description": "line: varctx.lkdur\nsyl: varctx.skdur"
+  },
+  "i": {
+    "prefix": ["$i"],
+    "body": ["\\$i"],
+    "description": "line: varctx.li\nsyl: varctx.si"
+  },
+  "left": {
+    "prefix": ["$left"],
+    "body": ["\\$left"],
+    "description": "line: varctx.left\nsyl: varctx.sleft"
+  },
+  "center": {
+    "prefix": ["$center"],
+    "body": ["\\$center"],
+    "description": "line: varctx.lcenter\nsyl: varctx.scenter"
+  },
+  "right": {
+    "prefix": ["$right"],
+    "body": ["\\$right"],
+    "description": "line: varctx.lright\nsyl: varctx.sright"
+  },
+  "top": {
+    "prefix": ["$top"],
+    "body": ["\\$top"],
+    "description": "line: varctx.ltop\nsyl: varctx.stop"
+  },
+  "middle": {
+    "prefix": ["$middle"],
+    "body": ["\\$middle"],
+    "description": "line: varctx.lmiddle\nsyl: varctx.smiddle"
+  },
+  "bottom": {
+    "prefix": ["$bottom"],
+    "body": ["\\$bottom"],
+    "description": "line: varctx.lbottom\nsyl: varctx.sbottom"
+  },
+  "x": {
+    "prefix": ["$x"],
+    "body": ["\\$x"],
+    "description": "line: varctx.lx\nsyl: varctx.sx"
+  },
+  "y": {
+    "prefix": ["$y"],
+    "body": ["\\$y"],
+    "description": "line: varctx.ly\nsyl: varctx.sy"
+  },
+  "width": {
+    "prefix": ["$width"],
+    "body": ["\\$width"],
+    "description": "line: varctx.lwidth\nsyl: varctx.swidth"
+  },
+  "height": {
+    "prefix": ["$height"],
+    "body": ["\\$height"],
+    "description": "line: varctx.lheight\nsyl: varctx.sheight"
+  }
+}
