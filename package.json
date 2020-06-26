@@ -42,6 +42,13 @@
         "extensions": [
           ".karacode"
         ]
+      },
+      {
+        "id": "ass",
+        "extensions": [
+          ".ass"
+        ],
+        "configuration": "./language/ass.configuration.json"
       }
     ],
     "grammars": [
@@ -51,6 +58,15 @@
         "path": "./language/karaoke-template.tmLanguage.json",
         "embeddedLanguages": {
           "meta.embedded.block.lua": "lua"
+        }
+      },
+      {
+        "language": "ass",
+        "scopeName": "source.ass",
+        "path": "./language/ass.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embeded.block.karatmpl": "karatmpl",
+          "meta.embeded.block.karacode": "lua"
         }
       }
     ],

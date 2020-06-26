@@ -1,0 +1,115 @@
+{
+  "name": "ass",
+  "scopeName": "source.ass",
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "patterns": [{ "include": "#simpleinfo" }, { "include": "#styles" }],
+  "repository": {
+    "simpleinfo": {
+      "begin": "(\\[(?:(?:Script Info)|(?:Aegisub Project Garbage))\\])",
+      "beginCaptures": {
+        "1": {
+          "name": "markup.heading.ass"
+        }
+      },
+      "end": "(?=^\\[[^\\]]+\\])",
+      "patterns": [{ "include": "#comment" }, { "include": "#key-value" }]
+    },
+    "styles": {
+      "begin": "(\\[V4\\+ Styles\\])",
+      "beginCaptures": {
+        "1": {
+          "name": "markup.heading.ass"
+        }
+      },
+      "end": "(?=^\\[[^\\]]+\\])",
+      "patterns": [
+        { "include": "#comment" },
+        {
+          "patterns": [
+            { "include": "#key" },
+            {
+              "name": "meta.structure.dictionary.value.ass",
+              "begin": "(: )",
+              "end": "$",
+              "beginCaptures": {
+                "1": {
+                  "name": "punctuation.separator.dictionary.key-value.ass"
+                },
+                "2": {
+                  "name": "constant.language.ass"
+                }
+              },
+              "patterns": [
+                {
+                  "begin": "((?<=: )|,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "(?=,|$)",
+                  "patterns": [{ "include": "#values" }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    "key-value": {
+      "patterns": [
+        { "include": "#key" },
+        {
+          "name": "meta.structure.dictionary.value.ass",
+          "begin": "(: )",
+          "end": "$",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.separator.dictionary.key-value.ass"
+            },
+            "2": {
+              "name": "constant.language.ass"
+            }
+          },
+          "patterns": [{ "include": "#values" }]
+        }
+      ]
+    },
+    "key": {
+      "name": "meta.structure.dictionary.key.ass",
+      "match": "^(^[^:]+)(?=: )",
+      "captures": {
+        "1": {
+          "name": "support.type.property-name.ass"
+        }
+      }
+    },
+    "values": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.ass",
+          "match": "(?<!\\.|&H[0-9a-fA-F]*)(-?([0-9]+))(?!\\.)"
+        },
+        {
+          "name": "constant.numeric.float.ass",
+          "match": "-?([0-9]+)\\.[0-9]+([eE][+-]?[0-9]+)?[fFdD]?"
+        },
+        {
+          "name": "constant.language.ass",
+          "match": "\\b(yes|no)\\b"
+        },
+        {
+          "name": "constant.other.color.rgb-value.color.ass",
+          "match": "&H[0-9a-fA-F]{8}"
+        },
+        { "name": "string.quoted.double.ass", "match": "[^,]+" }
+      ]
+    },
+    "comment": {
+      "name": "comment.line.ass",
+      "begin": ";",
+      "end": "$\\n?"
+    }
+  }
+}
