@@ -62,9 +62,126 @@
       "end": "(?=^\\[[^\\]]+\\])",
       "patterns": [
         { "include": "#comment" },
+        { "include": "#format" },
         {
           "patterns": [
             { "include": "#key" },
+            {
+              "name": "meta.structure.dictionary.value.ass.code",
+              "match": "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(code(?: [^,]*)?),(.*)$",
+              "captures": {
+                "1": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "2": {
+                  "patterns": [{ "include": "#timing" }]
+                },
+                "3": {
+                  "patterns": [{ "include": "#timing" }]
+                },
+                "4": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "5": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "6": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "7": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "8": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "9": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "10": {
+                  "patterns": [{ "include": "#karacode" }]
+                }
+              },
+              "patterns": [
+                {
+                  "begin": "(,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "$",
+                  "patterns": [{ "include": "#karacode" }]
+                },
+                {
+                  "begin": "((?<=: )|,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "(?=,)",
+                  "patterns": [{ "include": "#values" }]
+                }
+              ]
+            },
+            {
+              "name": "meta.structure.dictionary.value.ass.template",
+              "match": "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(template(?: [^,]*)?),(.*)$",
+              "captures": {
+                "1": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "2": {
+                  "patterns": [{ "include": "#timing" }]
+                },
+                "3": {
+                  "patterns": [{ "include": "#timing" }]
+                },
+                "4": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "5": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "6": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "7": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "8": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "9": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "10": {
+                  "patterns": [{ "include": "#karatmpl" }]
+                }
+              },
+              "patterns": [
+                {
+                  "begin": "(,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "$",
+                  "patterns": [{ "include": "#karatmpl" }]
+                },
+                {
+                  "begin": "((?<=: )|,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "(?=,)",
+                  "patterns": [{ "include": "#values" }]
+                }
+              ]
+            },
             {
               "name": "meta.structure.dictionary.value.ass",
               "match": "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(.*)$",
@@ -151,6 +268,14 @@
       }
     },
 
+    "format": {
+      "match": "^(Format:.+)$",
+      "captures": {
+        "1": {
+          "patterns": [{ "include": "#key-value" }]
+        }
+      }
+    },
     "key-value": {
       "patterns": [
         { "include": "#key" },
@@ -188,6 +313,26 @@
         {
           "name": "constant.numeric.integer.ass",
           "match": "-?([0-9]+)"
+        }
+      ]
+    },
+    "karacode": {
+      "name": "meta.embeded.block.karacode",
+      "begin": "(?<=,)",
+      "end": "$",
+      "patterns": [
+        {
+          "include": "source.lua"
+        }
+      ]
+    },
+    "karatmpl": {
+      "name": "meta.embeded.block.karatmpl",
+      "begin": "(?<=,)",
+      "end": "$",
+      "patterns": [
+        {
+          "include": "source.karatmpl"
         }
       ]
     },
