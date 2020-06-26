@@ -1,5 +1,7 @@
 # AegiKit README
 
+[![](https://img.shields.io/badge/chat-on%20disord-green.svg?logo=discord)](https://discord.gg/R7wH4Kd)
+
 Aegisub toolkit for VSCode.
 
 ## Features
@@ -12,8 +14,6 @@ Aegisub toolkit for VSCode.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Implemented features such as Karaoke and ASS highlight.
