@@ -292,7 +292,7 @@
       "match": "^([^:]+)(: )",
       "captures": {
         "1": {
-          "name": "support.type.property-name.ass"
+          "name": "entity.name.tag.ass"
         },
         "2": {
           "name": "punctuation.separator.dictionary.key-value.ass"
@@ -311,7 +311,7 @@
     "timing": {
       "patterns": [
         {
-          "name": "constant.numeric.integer.ass",
+          "name": "support.function.time",
           "match": "-?([0-9]+)"
         }
       ]
@@ -362,7 +362,7 @@
       "match": "\\b(yes|no)\\b"
     },
     "default": {
-      "name": "string.quoted.double.ass",
+      "name": "string.literal.ass",
       "match": "[^,]+"
     },
     "comment": {

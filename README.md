@@ -1,26 +1,14 @@
 # AegiKit README
 
-AegiKit is a toolkit for AegiSub. 
+Aegisub toolkit for VSCode.
 
 ## Features
 
+- ASS highlight
+- Karaoke code line highlight
+- Karaoke template line highlight (in ass file and .karatmpl file)
 - Lua Format
 - Lua Minify
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-No known issues for now.
 
 ## Release Notes
 
