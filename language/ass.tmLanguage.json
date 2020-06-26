@@ -2,7 +2,11 @@
   "name": "ass",
   "scopeName": "source.ass",
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "patterns": [{ "include": "#simpleinfo" }, { "include": "#styles" }],
+  "patterns": [
+    { "include": "#simpleinfo" },
+    { "include": "#styles" },
+    { "include": "#events" }
+  ],
   "repository": {
     "simpleinfo": {
       "begin": "(\\[(?:(?:Script Info)|(?:Aegisub Project Garbage))\\])",
@@ -29,16 +33,8 @@
             { "include": "#key" },
             {
               "name": "meta.structure.dictionary.value.ass",
-              "begin": "(: )",
+              "begin": "(?<=: )",
               "end": "$",
-              "beginCaptures": {
-                "1": {
-                  "name": "punctuation.separator.dictionary.key-value.ass"
-                },
-                "2": {
-                  "name": "constant.language.ass"
-                }
-              },
               "patterns": [
                 {
                   "begin": "((?<=: )|,)",
@@ -56,55 +52,173 @@
         }
       ]
     },
+    "events": {
+      "begin": "(\\[Events\\])",
+      "beginCaptures": {
+        "1": {
+          "name": "markup.heading.ass"
+        }
+      },
+      "end": "(?=^\\[[^\\]]+\\])",
+      "patterns": [
+        { "include": "#comment" },
+        {
+          "patterns": [
+            { "include": "#key" },
+            {
+              "name": "meta.structure.dictionary.value.ass",
+              "match": "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(.*)$",
+              "captures": {
+                "1": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "2": {
+                  "patterns": [{ "include": "#timing" }]
+                },
+                "3": {
+                  "patterns": [{ "include": "#timing" }]
+                },
+                "4": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "5": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "6": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "7": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "8": {
+                  "patterns": [{ "include": "#integer" }]
+                },
+                "9": {
+                  "patterns": [{ "include": "#default" }]
+                },
+                "10": {
+                  "patterns": [{ "include": "#tagblock" }]
+                }
+              },
+              "patterns": [
+                {
+                  "begin": "(,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "$",
+                  "patterns": [{ "include": "#tagblock" }]
+                },
+                {
+                  "begin": "((?<=: )|,)",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "punctuation.separator.dictionary.pair.ass"
+                    }
+                  },
+                  "end": "(?=,)",
+                  "patterns": [{ "include": "#values" }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    "tagblock": {
+      "begin": "\\{",
+      "end": "\\}",
+      "patterns": [
+        { "include": "#tag" },
+        { "include": "#integer" },
+        { "include": "#float" },
+        { "include": "#tag-color" },
+        { "include": "#tag-alpha" }
+      ]
+    },
+    "tag": {
+      "match": "(\\\\)([a-zA-Z0-9]*[a-zA-Z])",
+      "captures": {
+        "1": {
+          "name": "keyword.control.tagstart"
+        },
+        "2": {
+          "name": "entity.name.tag.tagname"
+        }
+      }
+    },
 
     "key-value": {
       "patterns": [
         { "include": "#key" },
         {
           "name": "meta.structure.dictionary.value.ass",
-          "begin": "(: )",
+          "begin": "(?<=: )",
           "end": "$",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.separator.dictionary.key-value.ass"
-            },
-            "2": {
-              "name": "constant.language.ass"
-            }
-          },
           "patterns": [{ "include": "#values" }]
         }
       ]
     },
     "key": {
       "name": "meta.structure.dictionary.key.ass",
-      "match": "^(^[^:]+)(?=: )",
+      "match": "^([^:]+)(: )",
       "captures": {
         "1": {
           "name": "support.type.property-name.ass"
+        },
+        "2": {
+          "name": "punctuation.separator.dictionary.key-value.ass"
         }
       }
     },
     "values": {
       "patterns": [
+        { "include": "#integer" },
+        { "include": "#float" },
+        { "include": "#style-color" },
+        { "include": "#yes-no" },
+        { "include": "#default" }
+      ]
+    },
+    "timing": {
+      "patterns": [
         {
           "name": "constant.numeric.integer.ass",
-          "match": "(?<!\\.|&H[0-9a-fA-F]*)(-?([0-9]+))(?!\\.)"
-        },
-        {
-          "name": "constant.numeric.float.ass",
-          "match": "-?([0-9]+)\\.[0-9]+([eE][+-]?[0-9]+)?[fFdD]?"
-        },
-        {
-          "name": "constant.language.ass",
-          "match": "\\b(yes|no)\\b"
-        },
-        {
-          "name": "constant.other.color.rgb-value.color.ass",
-          "match": "&H[0-9a-fA-F]{8}"
-        },
-        { "name": "string.quoted.double.ass", "match": "[^,]+" }
+          "match": "-?([0-9]+)"
+        }
       ]
+    },
+
+    "integer": {
+      "name": "constant.numeric.integer.ass",
+      "match": "(?<!\\.|&H[0-9a-fA-F]*)(-?([0-9]+))(?!\\.)"
+    },
+    "float": {
+      "name": "constant.numeric.float.ass",
+      "match": "-?([0-9]+)\\.[0-9]+([eE][+-]?[0-9]+)?[fFdD]?"
+    },
+    "style-color": {
+      "name": "constant.other.color.rgb-value.color.ass",
+      "match": "&H[0-9a-fA-F]{8}"
+    },
+    "tag-color": {
+      "name": "constant.other.color.rgb-value.color.ass",
+      "match": "&H[0-9a-fA-F]{6}&"
+    },
+    "tag-alpha": {
+      "name": "constant.other.color.rgb-value.alpha.ass",
+      "match": "&H[0-9a-fA-F]{2}(?![0-9a-fA-F])"
+    },
+    "yes-no": {
+      "name": "constant.language.ass",
+      "match": "\\b(yes|no)\\b"
+    },
+    "default": {
+      "name": "string.quoted.double.ass",
+      "match": "[^,]+"
     },
     "comment": {
       "name": "comment.line.ass",
