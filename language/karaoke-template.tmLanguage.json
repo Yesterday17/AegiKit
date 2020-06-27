@@ -10,7 +10,8 @@
       "patterns": [
         { "include": "#tag" },
         { "include": "#inline_lua" },
-        { "include": "#values" }
+        { "include": "#values" },
+        { "include": "#inline-variable" }
       ]
     },
     "tag": {
@@ -40,8 +41,7 @@
           "include": "source.lua"
         },
         {
-          "match": "\\$[a-z]+",
-          "name": "variable.name.template"
+          "include": "#inline-variable"
         }
       ]
     },
@@ -64,6 +64,10 @@
           "match": "&H[0-9a-fA-F]{2}(?![0-9a-fA-F])"
         }
       ]
+    },
+    "inline-variable": {
+      "match": "\\$[a-z]+",
+      "name": "variable.name.template"
     }
   }
 }
