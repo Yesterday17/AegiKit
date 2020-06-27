@@ -73,12 +73,7 @@
         }
       }
     ],
-    "snippets": [
-      {
-        "language": "karatmpl",
-        "path": "./snippets/inline-variable.karatmpl.json"
-      }
-    ]
+    "snippets": []
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
