@@ -3,7 +3,7 @@
   "displayName": "AegiKit",
   "description": "Aegisub toolkit for VSCode.",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "https://github.com/Yesterday17/AegiKit",
   "publisher": "yesterday17",
   "engines": {
