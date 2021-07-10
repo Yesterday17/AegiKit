@@ -367,7 +367,7 @@
     },
     "comment": {
       "name": "comment.line.ass",
-      "begin": ";",
+      "begin": ";|Comment:",
       "end": "$\\n?"
     }
   }
